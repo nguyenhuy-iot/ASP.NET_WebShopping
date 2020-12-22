@@ -26,7 +26,7 @@ namespace WebShopping.Models
         public int CategoryID { get; set; }
 
         //
-        [ForeignKey("CategoryId")]
+        [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

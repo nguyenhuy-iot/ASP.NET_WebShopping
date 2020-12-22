@@ -11,7 +11,7 @@ namespace WebShopping.Models
     public class Category
     {
         [Key]
-        public int CategoryID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("Category Name")]
         public string Name { get; set; }

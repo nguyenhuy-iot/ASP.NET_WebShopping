@@ -29,7 +29,7 @@ namespace WebShopping.Models
         public string Phone { get; set; }
 
         //
-        [ForeignKey("CustomerId")]
+        [ForeignKey("CustomerID")]
         public virtual Customer Customer { set; get; }
 
         public virtual ICollection<OrderDetail> OrderDetails { set; get; }
