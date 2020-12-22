@@ -77,3 +77,7 @@ C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\obj\Debug\WebShopping.csproj
 C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\obj\Debug\WebShopping.csproj.CopyComplete
 C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\obj\Debug\WebShopping.dll
 C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\obj\Debug\WebShopping.pdb
+C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\bin\EntityFramework.dll
+C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\bin\EntityFramework.SqlServer.dll
+C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\bin\EntityFramework.xml
+C:\Users\Nguyen Huy\Desktop\WebShopping\WebShopping\bin\EntityFramework.SqlServer.xml
