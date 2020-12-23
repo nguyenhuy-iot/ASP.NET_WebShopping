@@ -2493,6 +2493,9 @@
     <Content Include="Template\plugins\summernote\summernote.js.map" />
     <Content Include="Template\plugins\summernote\summernote.min.js.map" />
     <Content Include="Template\plugins\toastr\toastr.js.map" />
+    <Content Include="Views\Shared\_LayoutTemplate.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Shared\_PartialSidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
