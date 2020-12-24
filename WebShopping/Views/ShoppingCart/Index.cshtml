@@ -1,0 +1,65 @@
+﻿@model WebShopping.Models.ShoppingCart
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<div class="row">
+    @{
+        var products = Model.products;
+        foreach (var p in products)
+        {
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="~/Content/images/ms.png" style="width:140%;" />
+                    </div>
+                    <div class="col-md-9">
+                        Product ID: @p.ProductID <br />
+                        Product ID: @p.ProductName <br />
+                        Product ID: @p.UnitPrice <br />
+                        Product ID: @p.Category.CategoryName <br />
+                        <p>
+                            @Html.ActionLink("Add to cart", "AddToCart", "Home",
+                     new { @Id = @p.ProductID }, new { @class = "btn btn-primary" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+Yourcart.cshtml – HIển thị các sản phẩm trong giỏ hàng
+@{
+    ViewBag.Title = "YourCart";
+}
+<h2>YourCart</h2>
+@{ var cart = Session["cart"] as ShoppingCart.Controllers.ShoppingCart;}
+<table>
+    <tr>
+        <td>Product ID</td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Action</td>
+    </tr>
+    @if (cart != null)
+    {
+        for (int i = 0; i < cart.CartItems.Rows.Count; i++)
+        {
+            <tr>
+                <td>@cart.CartItems.Rows[i][0].ToString()</td>
+                <td>@cart.CartItems.Rows[i][1].ToString()</td>
+                <td>@cart.CartItems.Rows[i][2].ToString()</td>
+                <td>
+                    @Html.ActionLink("Delete", "RemoveItem", "Home",
+             new { @Id = cart.CartItems.Rows[i][0].ToString() },
+             new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+
