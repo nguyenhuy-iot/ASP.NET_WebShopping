@@ -9,56 +9,57 @@ namespace WebShopping.Controllers
 {
     public class CartController : Controller
     {
-        private const string CartSession = "CartSecession";
+        private ShopContext db = new ShopContext();
+        private const string CartSession = "CartSession";
         // GET: Cart
         public ActionResult Index()
         {
             var cart = Session[CartSession];
-            var list = (List<CartItem>)(null);
+            var list = new List<CartItem>();
             if (cart != null)
             {
                 list = (List<CartItem>)cart;
-
             }
             return View(list);
         }
-        public ActionResult AddItem(int productID,int quantiy)
+        public ActionResult AddItem(long productId, int quantity)
         {
+            var product = db.Product.Find(productId);
             var cart = Session[CartSession];
             if (cart != null)
             {
-                var list=(List<CartItem>)cart;
-                if (list.Exists(x => x.ProducID == productID))
+                var list = (List<CartItem>)cart;
+                if (list.Exists(x => x.Product.ID == productId))
                 {
+
                     foreach (var item in list)
                     {
-                        if (item.ProducID == productID)
+                        if (item.Product.ID == productId)
                         {
-                            item.Quantity += quantiy;
+                            item.Quantity += quantity;
                         }
                     }
                 }
                 else
                 {
-                    //tạo mới đối tượng
+                    //tạo mới đối tượng cart item
                     var item = new CartItem();
-                    item.ProducID = productID;
-                    item.Quantity = quantiy;
+                    item.Product = product;
+                    item.Quantity = quantity;
                     list.Add(item);
                 }
-                //gán vào Session
+                //Gán vào session
                 Session[CartSession] = list;
-
             }
             else
             {
-                //tạo mới đối tượng
+                //tạo mới đối tượng cart item
                 var item = new CartItem();
-                item.ProducID = productID;
-                item.Quantity = quantiy;
+                item.Product = product;
+                item.Quantity = quantity;
                 var list = new List<CartItem>();
-
-                //gán vào Session
+                list.Add(item);
+                //Gán vào session
                 Session[CartSession] = list;
             }
             return RedirectToAction("Index");

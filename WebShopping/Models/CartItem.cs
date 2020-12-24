@@ -8,7 +8,7 @@ namespace WebShopping.Models
     [Serializable]
     public class CartItem
     {
-        public int ProducID { get; set; }
+        public Product Product { get; set; }
         public int Quantity { get; set; }
     }
 }
