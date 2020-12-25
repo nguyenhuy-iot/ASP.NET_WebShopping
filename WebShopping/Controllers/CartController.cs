@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using WebShopping.Models;
 
 namespace WebShopping.Controllers
@@ -63,6 +64,32 @@ namespace WebShopping.Controllers
                 Session[CartSession] = list;
             }
             return RedirectToAction("Index");
+        }
+        public JsonResult Update(string cartModel)
+        {
+            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
+            var sessionCart = (List<CartItem>)Session[CartSession];
+
+            foreach (var item in sessionCart)
+            {
+                var jsonItem = jsonCart.SingleOrDefault(x => x.Product.ID == item.Product.ID);
+                if (jsonItem != null)
+                {
+                    item.Quantity = jsonItem.Quantity;
+                }
+            }
+            Session[CartSession] = sessionCart;
+            return Json(new
+            {
+                status = true
+            });
+        }
+        public ActionResult DeleteAll()
+        {
+            Session[CartSession] = null;
+            var list = new List<CartItem>();            
+            return View("Index", list);
+
         }
     }
 }
