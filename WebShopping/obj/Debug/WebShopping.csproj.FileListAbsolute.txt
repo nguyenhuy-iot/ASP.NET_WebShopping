@@ -508,3 +508,5 @@ C:\Users\admin\Desktop\GIT\ASP.NET_WebShopping\WebShopping\bin\Newtonsoft.Json.x
 C:\Users\admin\Desktop\GIT\ASP.NET_WebShopping\WebShopping\bin\Antlr3.Runtime.pdb
 C:\Users\admin\Desktop\GIT\ASP.NET_WebShopping\WebShopping\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\admin\Desktop\GIT\ASP.NET_WebShopping\WebShopping\obj\Debug\WebShopping.csproj.CopyComplete
+C:\Users\Nguyen Huy\Desktop\Git\New folder\ASP.NET_WebShopping\WebShopping\bin\Sitecore.FakeDb.dll
+C:\Users\Nguyen Huy\Desktop\Git\New folder\ASP.NET_WebShopping\WebShopping\bin\Sitecore.FakeDb.xml

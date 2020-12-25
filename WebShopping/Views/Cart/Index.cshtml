@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@section jsFooter{
+    <script src="~/Scripts/Controller/CartController.js"></script>
+}
 <h2>Index</h2>
 
 <div class="content">
@@ -14,32 +16,36 @@
                 <thead>
                     <tr>
                         <td>Mã SP</td>
-                        <td>Tên SP</td>                        
+                        <td>Tên SP</td>
                         <td>Số lượng</td>
-                        
-                        <td></td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Product.ID</td>
-                            <td>@item.Product.Name</td>                            
-                            <td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>
-                            
-                            
-                            
-                        </tr>
-                    }
+                    <tr>
+                        <td>@item.Product.ID</td>
+                        <td>@item.Product.Name</td>
+                        <td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>
+                        <td>@item.Product.UnitPrice</td>
+                        @{var sum = item.Product.UnitPrice * item.Quantity; }
+                        <td>@sum</td>
+                    </tr>
+                     }
+                    
 
                 </tbody>
             </table>
 
-            <button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
-            <button id="btnUpdate" class="btn">Cập nhật giỏ hàng</button>
-            <button id="btnDeleteAll" class="btn">Xoá giỏ hàng</button>
-            <button id="btnPayment" class="btn">Thanh toán</button>
+
+
+
+            <button id="btnContinue" class="btn btn-secondary">Tiếp tục mua hàng</button>
+            <button id="btnUpdate" class="btn btn-secondary">Cập nhật giỏ hàng</button>
+            <button id="btnDeleteAll" class="btn btn-secondary">Xoá giỏ hàng</button>
+            <button id="btnPayment" class="btn btn-secondary">Thanh toán</button>
         }
         else
         {
