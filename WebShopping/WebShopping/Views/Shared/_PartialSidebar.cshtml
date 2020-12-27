@@ -1,0 +1,88 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/Home" class="brand-link elevation-4">
+        <img src="/Asset/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Web Shopping</span>
+    </a>
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                @if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Admin
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="/Role" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Role</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Categories" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Categories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/OrderDetails" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>OrderDetails</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./Products" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Products</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                }
+
+
+            <li class="nav-item">
+                <a href="../Categories" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p>Category</p>
+                </a>
+                
+
+            </li>
+                
+                <li class="nav-item">
+                    <a href="../Customers" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Customer</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../OrderDetails" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>OrderDetail</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../Orders" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Order</p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+
+</aside>

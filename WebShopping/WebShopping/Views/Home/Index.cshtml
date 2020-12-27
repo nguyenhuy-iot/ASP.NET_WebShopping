@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebShopping.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sản Phẩm</h2>
+<hr />
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card" style="width: 18rem">
+            <img src="@item.image" class="card-img-top" width="200" height="200" alt="..." />
+            <div class="card-body">
+                <h5 class="fw-bold card-title">@item.ProductName</h5>
+                <p class="card-text text-danger">@item.UnitPrice VND </p>
+                <a href="#" class="btn btn-primary">thêm vào giỏ</a>
+            </div>
+        </div>
+    </div>
+}
