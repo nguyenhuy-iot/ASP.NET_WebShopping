@@ -70,7 +70,7 @@ namespace WebShopping.Controllers
             int productId = int.Parse(form["ProductID"]);
             int Q_ty = int.Parse(form["Quantity"]);
 
-            var product = db.Product.Find(productId);
+            //var product = db.Product.Find(productId);
             var cart = Session[CartSession];
 
             var list = (List<CartItem>)cart;
@@ -94,6 +94,28 @@ namespace WebShopping.Controllers
             var list = new List<CartItem>();
             //return View("Index", list);
             return RedirectToAction("Index");
+        }
+        public ActionResult Delete(int productId)
+        {            
+            var cart = Session[CartSession];
+            var list = (List<CartItem>)cart;
+
+            list.RemoveAll(s=>s.Product.ProductID== productId);
+
+            return RedirectToAction("Index");
+        }
+
+        public PartialViewResult BagCart()
+        {
+            int _item = 0;
+            var cart = Session[CartSession];
+            if (cart!=null)
+            {
+                var list = (List<CartItem>)cart;
+                _item = list.Sum(s => s.Quantity);
+            }            
+            ViewBag.infoCart = _item;
+            return PartialView("BagCart");
         }
     }
 }
