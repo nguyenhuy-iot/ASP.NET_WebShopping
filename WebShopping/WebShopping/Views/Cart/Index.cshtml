@@ -1,0 +1,71 @@
+﻿@*@model List<WebShopping.Models.CartItem>*@
+@model IEnumerable<WebShopping.Models.CartItem>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="content">
+    <div class="section group">
+        @*@if (Model > 0)*@
+        @if (Model.Count() > 0)
+
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Image</td>
+                        <td>Tên SP</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var Total = Convert.ToDouble(item.Product.UnitPrice * item.Quantity);
+                        <tr>
+                            <td>
+                                <img src="@item.Product.image" width="100" height="100" alt="..." />
+                            </td>
+                            <td>@item.Product.ProductName</td>
+
+                            <td>
+                                @{Html.BeginForm("Update", "Cart");}
+                                <input type="hidden" value="@item.Product.ProductID" name="ProductID" />
+                                <input type="number" value="@item.Quantity" name="Quantity"/>
+                                <input type="submit" value="Update" />
+                                @{Html.EndForm();}
+                            </td>
+
+                            <td>@Convert.ToDouble(item.Product.UnitPrice)</td>
+                            <td>@Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-secondary" href="@Url.Action("Index", "Home")">Tiếp tục mua hàng</a>
+                <a class="btn btn-secondary" href="@Url.Action("DeleteAll", "Cart")">Xoá giỏ hàng</a>
+
+                <a class="btn btn-success" href="@Url.Action("Index", "Home")">Thanh toán</a>
+            </div>
+            
+
+        }
+        else
+        {
+            <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+        }
+
+    </div>
+        </div>

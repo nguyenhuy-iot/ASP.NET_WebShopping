@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h5 class="fw-bold card-title">@item.ProductName</h5>
                 <p class="card-text text-danger">@item.UnitPrice VND </p>
-                <a href="#" class="btn btn-primary">thêm vào giỏ</a>
+                <a href="@Url.Action("AddItem", "Cart", new { productId = item.ProductID, quantity = 1 })" class="btn btn-primary">thêm vào giỏ</a>
             </div>
         </div>
     </div>
