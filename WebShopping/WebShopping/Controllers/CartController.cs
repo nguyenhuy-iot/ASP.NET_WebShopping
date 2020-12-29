@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -90,9 +91,13 @@ namespace WebShopping.Controllers
         }
         public ActionResult DeleteAll()
         {
-            Session[CartSession] = null;
-            var list = new List<CartItem>();
+            //Session[CartSession] = null;
+            //var list = new List<CartItem>();
             //return View("Index", list);
+
+            var cart = Session[CartSession];
+            var list = (List<CartItem>)cart;
+            list.Clear();
             return RedirectToAction("Index");
         }
         public ActionResult Delete(int productId)
@@ -116,6 +121,44 @@ namespace WebShopping.Controllers
             }            
             ViewBag.infoCart = _item;
             return PartialView("BagCart");
+        }
+        //[Authorize]
+        public ActionResult Checkout()
+        {            
+            string UserID = User.Identity.GetUserId();
+            string UserName = User.Identity.GetUserName();
+            Order OrderItem = new Order();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Checkout(FormCollection form)
+        {
+            //Create Order "ID,CustomerID,OrderDate,RequreDate,ShipAddress,Phone"
+            Order OrderItem = new Order();
+            OrderItem.CustomerID = 1;
+            OrderItem.OrderDate = DateTime.Now;
+            OrderItem.RequreDate = DateTime.Parse(form["Requre_Date"]);
+            OrderItem.ShipAddress = form["Ship_Address"];
+            OrderItem.Phone = form["Phone"];
+            db.Order.Add(OrderItem);
+            //db.SaveChanges();
+            //Create OrderDetail "OrderID,ProductID,Quantity,UnitPrice"
+            var cart = Session[CartSession];
+            var list = (List<CartItem>)cart;
+            foreach (var item in list)
+            {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.OrderID = OrderItem.ID;
+                orderDetail.ProductID = item.Product.ProductID;
+                orderDetail.Quantity = item.Quantity;
+                orderDetail.UnitPrice = item.Product.UnitPrice;
+                db.OrderDetail.Add(orderDetail);
+            }
+            db.SaveChanges();
+            //Delete All Cart
+            list.Clear();
+
+            return View("Checkout_Success");
         }
     }
 }
