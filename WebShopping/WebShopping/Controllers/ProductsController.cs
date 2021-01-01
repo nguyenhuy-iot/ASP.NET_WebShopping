@@ -12,6 +12,20 @@ namespace WebShopping.Controllers
 {
     public class ProductsController : Controller
     {
+        /// <summary>
+        /// save the file image, return get the link image       
+        /// </summary>
+        /// <returns></returns>
+        string LoadFile()
+        {            
+            var f = Request.Files["document"];
+            if (f != null && f.ContentLength > 0)
+            {
+                var path = Server.MapPath("~/Asset/Image/" + f.FileName);
+                f.SaveAs(path);                               
+            }
+            return "/Asset/Image/" + f.FileName; 
+        }
         private ShopContext db = new ShopContext();
 
         // GET: Products
@@ -49,7 +63,8 @@ namespace WebShopping.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,image,ProductName,QuantityInStock,UnitPrice,CategoryID")] Product product)
-        {
+        {          
+            product.image = LoadFile(); 
             if (ModelState.IsValid)
             {
                 db.Product.Add(product);
@@ -84,6 +99,7 @@ namespace WebShopping.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,image,ProductName,QuantityInStock,UnitPrice,CategoryID")] Product product)
         {
+            product.image = LoadFile();
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
