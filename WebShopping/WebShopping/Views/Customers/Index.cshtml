@@ -7,45 +7,69 @@
 <h2>Customer</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+<table class="table table-striped" id="tblCaurse">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-secondary btn-sm" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-secondary btn-sm" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-secondary btn-sm" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@* ---section---  *@
+@section scripts
+{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblCaurse').DataTable();
+        });
+    </script>
 }
 
-</table>
+@section CSS
+{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+}

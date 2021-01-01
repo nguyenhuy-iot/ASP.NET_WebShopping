@@ -7,45 +7,76 @@
 <h2>Order Details</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",new { },new { @class= "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.ShipAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-striped" id="tblCaurse">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.ShipAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ShipAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Order.ShipAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@* ---section---  *@
+@section scripts
+{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblCaurse').DataTable();
+        });
+    </script>
 }
 
-</table>
+@section CSS
+{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+}
